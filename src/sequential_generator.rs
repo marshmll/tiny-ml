@@ -14,8 +14,4 @@ impl SequentialGenerator {
     pub fn next(&self) -> u64 {
         self.current.fetch_add(1, Ordering::SeqCst)
     }
-
-    pub fn prev(&self) -> u64 {
-        self.current.fetch_sub(1, Ordering::SeqCst)
-    }
 }
