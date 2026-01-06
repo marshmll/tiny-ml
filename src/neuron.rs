@@ -3,7 +3,7 @@ use rand::Rng;
 use crate::value::{Value, ValuePointer};
 
 #[allow(unused)]
-#[derive(Debug)]
+#[derive(Debug, Clone, Copy)]
 pub enum ActivationType {
     RELU,
     TANH,
@@ -13,17 +13,17 @@ pub enum ActivationType {
 #[allow(unused)]
 #[derive(Debug)]
 pub struct Neuron {
-    weights: Vec<ValuePointer>,
-    bias: ValuePointer,
-    activation_type: ActivationType,
+    pub weights: Vec<ValuePointer>,
+    pub bias: ValuePointer,
+    pub activation_type: ActivationType,
 }
 
 #[allow(unused)]
 impl Neuron {
-    pub fn new(number_of_inputs: usize, activation_type: ActivationType) -> Self {
+    pub fn new(num_of_inputs: usize, activation_type: ActivationType) -> Self {
         let mut rng = rand::rng();
 
-        let weights: Vec<ValuePointer> = (0..number_of_inputs)
+        let weights: Vec<ValuePointer> = (0..num_of_inputs)
             .map(|_| Value::new(rng.random_range(0.0_f32..=1.0_f32)))
             .collect();
 
